@@ -1,0 +1,9 @@
+[theme]
+# 기본 테마 설정 (다크모드)
+base = "dark"
+primaryColor = "#1f77b4"
+backgroundColor = "#0e1117"
+secondaryBackgroundColor = "#262730"
+textColor = "#fafafa"
+
+# 라이트 모드로 변경하려면 base = "light"로 설정

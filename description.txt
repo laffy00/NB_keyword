@@ -1,0 +1,10 @@
+프로젝트명: NB_keyword
+생성일: 2025-10-22
+작성자: ORYNE
+
+[파일 구조 안내]
+- program: 주요 코드 / HTML / CSS / JS 파일
+- showcase: 완성 이미지 / 미리보기 스크린샷
+- assets: 디자인 소스, 로고, 서체 등 리소스 파일
+- docs: 참고 문서나 기획안 저장 폴더
+- description.txt: 프로젝트 정보 기록
