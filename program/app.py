@@ -16,6 +16,7 @@ import urllib.parse
 import re
 import streamlit as st
 from dotenv import load_dotenv
+from PIL import Image
 
 # Load environment variables
 load_dotenv()
@@ -28,10 +29,17 @@ CUSTOMER_ID = os.getenv("CUSTOMER_ID")
 ACCESS_LICENSE = os.getenv("ACCESS_LICENSE")
 SECRET_KEY = os.getenv("SECRET_KEY")
 
+# 파비콘 로드
+try:
+    logo_path = os.path.join(os.path.dirname(__file__), "..", "..", "assets", "oryne_logo.png")
+    favicon = Image.open(logo_path)
+except:
+    favicon = "🔍"  # 파일을 찾을 수 없으면 이모지 사용
+
 # 페이지 설정
 st.set_page_config(
     page_title="네이버 키워드 도구 by ORYNE",
-    page_icon="../../assets/oryne_logo.png",
+    page_icon=favicon,
     layout="centered",
     initial_sidebar_state="collapsed"
 )
@@ -275,7 +283,7 @@ def main():
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
         try:
-            st.image("../../assets/oryne_logo.png", use_container_width=True)
+            st.image("../../assets/oryne_logo.png", width="stretch")
         except:
             # 로고 파일이 없을 경우 텍스트로 대체
             st.markdown("<h1 class='main-header'>🔍 네이버 키워드 도구</h1>", unsafe_allow_html=True)
@@ -331,7 +339,7 @@ def rank_checker_tab():
     # 검색 버튼
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
-        search_button = st.button("🔍 순위 확인", use_container_width=True, type="primary")
+        search_button = st.button("🔍 순위 확인", width="stretch", type="primary")
     
     # 검색 실행
     if search_button:
@@ -425,7 +433,7 @@ def related_keywords_tab():
     
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
-        search_button = st.button("🔍 연관 키워드 검색", use_container_width=True, type="primary", key="related_search")
+        search_button = st.button("🔍 연관 키워드 검색", width="stretch", type="primary", key="related_search")
     
     if search_button and keyword:
         with st.spinner("연관 키워드를 검색 중입니다..."):
@@ -475,7 +483,7 @@ def keyword_analysis_tab():
     
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
-        analyze_button = st.button("📊 키워드 분석", use_container_width=True, type="primary", key="analyze")
+        analyze_button = st.button("📊 키워드 분석", width="stretch", type="primary", key="analyze")
     
     if analyze_button:
         keywords = [k.strip() for k in keywords_input.split(",") if k.strip()]
@@ -520,7 +528,7 @@ def keyword_analysis_tab():
         
         st.dataframe(
             df,
-            use_container_width=True,
+            width="stretch",
             hide_index=True
         )
         
@@ -555,7 +563,7 @@ def sidebar_info():
     with st.sidebar:
         # 사이드바 로고
         try:
-            st.image("../../assets/oryne_logo.png", use_container_width=True)
+            st.image("../../assets/oryne_logo.png", width="stretch")
             st.markdown("---")
         except:
             st.markdown("### ORYNE")
