@@ -30,8 +30,8 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 
 # 페이지 설정
 st.set_page_config(
-    page_title="네이버 순위 확인기 by ORYNE",
-    page_icon="🔍",
+    page_title="네이버 키워드 도구 by ORYNE",
+    page_icon="../../assets/oryne_logo.png",
     layout="centered",
     initial_sidebar_state="collapsed"
 )
@@ -271,9 +271,16 @@ def get_top_ranked_product_by_mall(keyword, mall_name, progress_bar=None):
     return best_product
 
 def main():
-    # 헤더
-    st.markdown("<h1 class='main-header'>🔍 네이버 키워드 도구</h1>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center; color: gray;'>by ORYNE</p>", unsafe_allow_html=True)
+    # 헤더에 로고 추가
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        try:
+            st.image("../../assets/oryne_logo.png", use_container_width=True)
+        except:
+            # 로고 파일이 없을 경우 텍스트로 대체
+            st.markdown("<h1 class='main-header'>🔍 네이버 키워드 도구</h1>", unsafe_allow_html=True)
+    
+    st.markdown("<p style='text-align: center; color: gray; margin-top: -1rem;'>by ORYNE</p>", unsafe_allow_html=True)
     
     st.markdown("---")
     
@@ -546,6 +553,14 @@ def keyword_analysis_tab():
 def sidebar_info():
     """사이드바 정보"""
     with st.sidebar:
+        # 사이드바 로고
+        try:
+            st.image("../../assets/oryne_logo.png", use_container_width=True)
+            st.markdown("---")
+        except:
+            st.markdown("### ORYNE")
+            st.markdown("---")
+        
         st.markdown("### 🎨 테마 설정")
         st.info("""
         💡 **테마 변경 방법:**
